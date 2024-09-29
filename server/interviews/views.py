@@ -30,9 +30,10 @@ class AvailabilityViewSet(viewsets.ModelViewSet):
             # status='not booked'
         )       
         if availability.exists():
-            return Response({'status': 'neutral', 'message': 'The availability is already exists'}, status=200)
+            return Response({'status': 'neutral', 'message': 'The availability already exists'}, status=200)
 
-        # if the old included in the new, update the old if not booked
+        # if the old included in the new:
+        # update the old if "not booked"
         availability = Availability.objects.filter(
             user=user_id,
             available_date=available_date,
@@ -45,9 +46,9 @@ class AvailabilityViewSet(viewsets.ModelViewSet):
             availability.start_time = start_time
             availability.end_time = end_time
             availability.save()
-            return Response({'status': 'merging', 'message': 'The availability is modified'}, status=200)
+            return Response({'status': 'updating', 'message': 'The availability is modified'}, status=200)
         
-        # if booked, 1.split the new to before and after or 2. not allowing
+        # if booked, split the new to before and after
         availability = Availability.objects.filter(
             user=user_id,
             available_date=available_date,
@@ -57,12 +58,12 @@ class AvailabilityViewSet(viewsets.ModelViewSet):
         ).first()
 
         if availability:
+            # self instead of super
             super().create(request, start_time=start_time, end_time=availability.start_time,  *args, **kwargs)
             super().create(request, start_time=availability.end_time, end_time=end_time,  *args, **kwargs)
             return Response({'status': 'creating', 'message': 'new availabilities were created before and after the existing'}, status=200)
-            return Response({'status': 'conflict', 'message': 'there is a booked interview in this period'}, status=200)
+            # return Response({'status': 'conflict', 'message': 'there is a booked interview in this period'}, status=200)
 
-        
         # if new overlaps the old, split the new
         availability = Availability.objects.filter(
             user=user_id,

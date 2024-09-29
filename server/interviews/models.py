@@ -20,6 +20,7 @@ class Availability(models.Model):
         return f"Availability for {self.user} on {self.available_date} from {self.start_time} to {self.end_time}"
     
 class Interview(models.Model):
+    #user m-m, availability 1-m
     STATUS_CHOICES = [
         ('matched', 'Matched'),
         ('current', 'Current'),
