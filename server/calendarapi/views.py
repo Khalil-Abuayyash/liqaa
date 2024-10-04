@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Availability, Interview
 from .serializers import AvailabilitySerializer, InterviewSerializer
-from .google_calendar import create_event  # Assuming this exists in 'google_calendar.py'
+from .google_calendar import create_event  
 from google_auth_oauthlib.flow import Flow
 from django.shortcuts import redirect
 
@@ -32,7 +32,6 @@ class InterviewViewSet(viewsets.ModelViewSet):
         start_time = interview['start_time']
         end_time = interview['end_time']
 
-        # Create a calendar event when the interview is created
         event = create_event(
             summary=f"Interview: {interviewer.username} with {interviewee.username}",
             start_time=start_time,

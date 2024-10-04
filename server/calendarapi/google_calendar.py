@@ -17,7 +17,7 @@ def create_event(summary, start_time, end_time):
         'summary': summary,
         'start': {
             'dateTime': start_time.isoformat(),
-            'timeZone': 'UTC',  # Adjust the time zone as per your need
+            'timeZone': 'UTC',  
         },
         'end': {
             'dateTime': end_time.isoformat(),
