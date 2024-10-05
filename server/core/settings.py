@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--+f6_hk477vnsrhp5l3-cp2s^k*8(*(75wz^m5!t+%k&zw876)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0286-194-169-121-112.ngrok-free.app']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '9e6c-176-119-255-81.ngrok-free.app']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'interviews',
     'calendarapi', 
+     'django_extensions', # Hamada / it use to run a local HTTPS server
 ]
 
 REST_FRAMEWORK = {
