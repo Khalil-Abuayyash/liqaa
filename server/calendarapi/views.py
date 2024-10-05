@@ -69,7 +69,7 @@ def initiate_oauth(request):
     flow = Flow.from_client_secrets_file(
         CREDENTIALS_PATH,
         scopes=SCOPES,
-        redirect_uri='http://localhost:8000/api/calendarapi/oauth2callback/'  # Updated redirect URI for local development
+        redirect_uri='https://127.0.0.1:8080/api/calendarapi/oauth2callback/'
     )
 
     authorization_url, state = flow.authorization_url(access_type='offline')
@@ -81,7 +81,7 @@ def oauth2callback(request):
     flow = Flow.from_client_secrets_file(
         CREDENTIALS_PATH,
         scopes=SCOPES,
-        redirect_uri='http://localhost:8000/api/calendarapi/oauth2callback/'  # Updated redirect URI for local development
+        redirect_uri='https://127.0.0.1:8080/api/calendarapi/oauth2callback/' 
     )
     
     flow.fetch_token(authorization_response=request.build_absolute_uri())
