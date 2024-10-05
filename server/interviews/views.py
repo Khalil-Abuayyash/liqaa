@@ -14,6 +14,10 @@ class AvailabilityViewSet(viewsets.ModelViewSet):
         available_date = request.data.get('available_date')
         start_time = request.data.get('start_time')
         end_time = request.data.get('end_time')
+        # create a response here to check validation before checking for overlapping
+        # In this way, if there is error with validation it will return a 400 repsonse 
+        # but in the other way it will raise a validation error
+        response =  super().create(request, *args, **kwargs)
 
         # Check for time order
         if end_time <= start_time:
@@ -82,7 +86,7 @@ class AvailabilityViewSet(viewsets.ModelViewSet):
             # return Response({'status': 'spliting', 'message': 'The new availability is splited'}, status=200)
             return Response({'status': 'conflict', 'message': 'Overlapped avaialabilities is not allowed'}, status=400)
 
-        response =  super().create(request, *args, **kwargs)
+        # response =  super().create(request, *args, **kwargs)
         return response
 
 class InterviewViewSet(viewsets.ModelViewSet):

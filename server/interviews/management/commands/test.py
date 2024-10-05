@@ -9,5 +9,5 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         self.stdout.write(
-            self.style.SUCCESS('Successfully printing on stdout')
+            self.style.SUCCESS('Successfully printing Hello World!')
         )
