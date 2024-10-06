@@ -31,7 +31,6 @@ class InterviewViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         interview = serializer.save()  
-
         event = create_event(
             summary=f"Interview: {interview.interviewer.username} with {interview.interviewee.username}",
             start_time=datetime.combine(interview.scheduled_date, interview.start_time),
