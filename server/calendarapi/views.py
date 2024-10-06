@@ -89,10 +89,21 @@ def create_event_view(request):
     serializer = InterviewSerializer(data=interview_data)
 
     if serializer.is_valid():
-        serializer.save()  
-        return JsonResponse({"success": "Interview created successfully"}, status=201)
-    
+        interview = serializer.save()  
+
+        event = create_event(
+            summary=f"Interview: {interview.interviewer.username} with {interview.interviewee.username}",
+            start_time=datetime.combine(interview.scheduled_date, interview.start_time),
+            end_time=datetime.combine(interview.scheduled_date, interview.end_time)
+        )
+
+        if not event:
+            return JsonResponse({"error": "Could not create event in Google Calendar."}, status=500)
+
+        return JsonResponse({"success": "Interview created and event added successfully."}, status=201)
+
     return JsonResponse({"error": serializer.errors}, status=400)
+
 
 def get_credentials(token_path):
     if os.path.exists(token_path):

@@ -9,8 +9,8 @@ router.register(r'interviews', InterviewViewSet)
 urlpatterns = [
     path('oauth2callback/', oauth2callback, name='oauth2callback'),  
     path('initiate_oauth/', initiate_oauth, name='initiate_oauth'),
-    path('list-events/', list_events_view, name='list-events'),
-    path('create-event/', create_event_view, name='create-event'),
+    path('list_events/', list_events_view, name='list-events'),
+    path('create_event/', create_event_view, name='create-event'),
 ]
 
 urlpatterns += router.urls

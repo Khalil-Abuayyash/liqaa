@@ -36,7 +36,7 @@ def create_event(summary, start_time, end_time):
 def list_events(credentials):
     try:
         service = build('calendar', 'v3', credentials=credentials)
-        now = datetime.datetime.utcnow().isoformat() + 'Z'  # 'Z' indicates UTC time
+        now = datetime.datetime.utcnow().isoformat() + 'Z'  
         events_result = service.events().list(calendarId='primary', timeMin=now,
                                               maxResults=10, singleEvents=True,
                                               orderBy='startTime').execute()
