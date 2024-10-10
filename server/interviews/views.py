@@ -66,9 +66,8 @@ class AvailabilityViewSet(viewsets.ModelViewSet):
             super().create(request, start_time=start_time, end_time=availability.start_time,  *args, **kwargs)
             super().create(request, start_time=availability.end_time, end_time=end_time,  *args, **kwargs)
             return Response({'status': 'creating', 'message': 'new availabilities were created before and after the existing'}, status=200)
-            # return Response({'status': 'conflict', 'message': 'there is a booked interview in this period'}, status=200)
 
-        # if new overlaps the old, split the new
+
         availability = Availability.objects.filter(
             user=user_id,
             available_date=available_date,

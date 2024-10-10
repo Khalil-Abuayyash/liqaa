@@ -7,7 +7,6 @@ class Availability(models.Model):
         ('booked', 'Booked'),
         ('not booked', 'Not Booked'),
     ]
-
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='interviews_availability')
     available_date = models.DateField()
     start_time = models.TimeField()
