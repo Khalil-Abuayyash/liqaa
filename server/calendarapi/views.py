@@ -12,13 +12,13 @@ from google.oauth2.credentials import Credentials
 from .models import Availability, Interview
 from .serializers import AvailabilitySerializer, InterviewSerializer
 from django.shortcuts import render
-from google_calendar import *
+from .google_calendar import *
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 SCOPES = ['https://www.googleapis.com/auth/calendar']
-CREDENTIALS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'calendarapi', 'credentials.json')
+CREDENTIALS_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'credentials.json')
 
 class AvailabilityViewSet(viewsets.ModelViewSet):
     queryset = Availability.objects.all()
@@ -83,7 +83,6 @@ def create_event_view(request):
         return JsonResponse({"success": "Interview created and event added successfully."}, status=201)
     return JsonResponse({"error": serializer.errors}, status=400)
 
-# Create Availability Function 
 
 @api_view(['GET'])
 def list_events_view(request):
@@ -98,3 +97,4 @@ def list_events_view(request):
     else:
         return JsonResponse({"message": "No upcoming events found."})
 
+# Create Availability Function 

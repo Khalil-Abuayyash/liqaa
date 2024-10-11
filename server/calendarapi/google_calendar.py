@@ -20,7 +20,7 @@ def get_credentials(token_path):
 
 
 def create_event(summary, start_time, end_time):
-    token_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'calendarapi', 'token.json')
+    token_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'token.json')
     creds = get_credentials(token_path)
 
     if creds is None:
