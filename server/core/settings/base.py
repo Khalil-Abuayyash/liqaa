@@ -25,9 +25,6 @@ SECRET_KEY = 'django-insecure--+f6_hk477vnsrhp5l3-cp2s^k*8(*(75wz^m5!t+%k&zw876)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '9e6c-176-119-255-81.ngrok-free.app']
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -77,18 +74,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
