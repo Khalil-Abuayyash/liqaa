@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'interviews',
     'calendarapi', 
      'django_extensions', # Hamada / it use to run a local HTTPS server
+     'corsheaders',
 ]
 
 REST_FRAMEWORK = {
