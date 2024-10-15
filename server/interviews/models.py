@@ -1,6 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+from users.models import User
 
 class Availability(models.Model):
     STATUS_CHOICES = [

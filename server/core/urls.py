@@ -21,6 +21,6 @@ urlpatterns = [
     path('api/calendarapi/', include('calendarapi.urls')),
 
     # Tokens
-    path('api/token/', include('auth.urls', namespace='auth')),
+    path('api/token/', include('users.urls', namespace='users')),
 
 ]
