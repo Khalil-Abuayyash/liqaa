@@ -18,6 +18,9 @@ urlpatterns = [
     
     
     # This path for calendar api / Hamada 
-    path('api/calendarapi/', include('calendarapi.urls')),  
+    path('api/calendarapi/', include('calendarapi.urls')),
+
+    # Tokens
+    path('api/token/', include('auth.urls', namespace='auth')),
 
 ]
