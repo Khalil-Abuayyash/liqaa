@@ -14,7 +14,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('', include('interviews.urls', namespace='interviews')),
+    path('interviews/', include('interviews.urls', namespace='interviews')),
     
     
     # This path for calendar api / Hamada 
@@ -22,5 +22,5 @@ urlpatterns = [
 
     # Tokens
     path('api/token/', include('users.urls', namespace='users')),
-
+    
 ]

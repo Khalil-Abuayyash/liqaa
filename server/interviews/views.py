@@ -77,5 +77,8 @@ class AvailabilityViewSet(viewsets.ModelViewSet):
 class InterviewViewSet(viewsets.ModelViewSet): 
     queryset = Interview.objects.all()
     serializer_class = InterviewSerializer
+    
+    
+
 
 

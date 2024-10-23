@@ -8,7 +8,6 @@ from django.shortcuts import redirect
 from google_auth_oauthlib.flow import Flow
 from googleapiclient.discovery import build
 from google.oauth2.credentials import Credentials
-from .serializers import AvailabilitySerializer, InterviewSerializer
 from django.shortcuts import render
 from .google_calendar import *
 from rest_framework.response import Response
