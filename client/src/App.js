@@ -1,16 +1,16 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import CreateAvailability from './components/CreateAvailability';
 import AvailabilityList from './components/AvailabilityList';
-import InterviewBookingForm from './components/InterviewBookingForm';
-import EventList from './components/EventList';
 
 const App = () => {
     return (
-        <div>
-            <h1>Interview Preparation App</h1>
-            <AvailabilityList />
-            <InterviewBookingForm />
-            <EventList />
-        </div>
+        <Router>
+            <Routes>
+                <Route path="/create_availability" element={<CreateAvailability />} />
+                <Route path="/availability_list" element={<AvailabilityList />} />
+            </Routes>
+        </Router>
     );
 };
 
