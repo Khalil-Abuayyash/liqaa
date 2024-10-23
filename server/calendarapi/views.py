@@ -97,4 +97,3 @@ def list_events_view(request):
     else:
         return JsonResponse({"message": "No upcoming events found."})
 
-# Create Availability Function 
