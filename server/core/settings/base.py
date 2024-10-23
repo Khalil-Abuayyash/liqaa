@@ -38,9 +38,9 @@ INSTALLED_APPS = [
     'users',
     'interviews',
     'calendarapi',
-     'django_extensions', # Hamada / it use to run a local HTTPS server
-     'corsheaders',
-     'rest_framework_simplejwt',
+    'django_extensions', # Hamada / it use to run a local HTTPS server
+    'corsheaders',
+    'rest_framework_simplejwt',
 ]
 
 REST_FRAMEWORK = {
@@ -62,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'core.urls'

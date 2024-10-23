@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { createInterview } from '../api';
+import axios from 'axios';
 
-const InterviewBookingForm = () => {
+const BookInterview = () => {
     const [interviewData, setInterviewData] = useState({
         interviewer: '',
         interviewee: '',
@@ -18,68 +18,55 @@ const InterviewBookingForm = () => {
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        try {
-            await createInterview(interviewData);
-            alert('Interview successfully booked!');
-        } catch (error) {
-            console.error('Error booking interview:', error);
-            alert('Failed to book interview.');
-        }
+        axios.post('http://127.0.0.1:8080/api/interviews/', interviewData)
+            .then(response => {
+                console.log('Interview booked successfully:', response.data);
+            })
+            .catch(error => {
+                console.error('Error booking interview:', error);
+            });
     };
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2>Book an Interview</h2>
-            <label>
-                Interviewer:
-                <input
-                    type="text"
-                    name="interviewer"
-                    value={interviewData.interviewer}
-                    onChange={handleChange}
-                />
-            </label>
-            <label>
-                Interviewee:
-                <input
-                    type="text"
-                    name="interviewee"
-                    value={interviewData.interviewee}
-                    onChange={handleChange}
-                />
-            </label>
-            <label>
-                Date:
-                <input
-                    type="date"
-                    name="scheduled_date"
-                    value={interviewData.scheduled_date}
-                    onChange={handleChange}
-                />
-            </label>
-            <label>
-                Start Time:
-                <input
-                    type="time"
-                    name="start_time"
-                    value={interviewData.start_time}
-                    onChange={handleChange}
-                />
-            </label>
-            <label>
-                End Time:
-                <input
-                    type="time"
-                    name="end_time"
-                    value={interviewData.end_time}
-                    onChange={handleChange}
-                />
-            </label>
-            <button type="submit">Book Interview</button>
+            <h3>Book an Interview</h3>
+            <input
+                type="text"
+                name="interviewer"
+                placeholder="Interviewer"
+                value={interviewData.interviewer}
+                onChange={handleChange}
+            />
+            <input
+                type="text"
+                name="interviewee"
+                placeholder="Interviewee"
+                value={interviewData.interviewee}
+                onChange={handleChange}
+            />
+            <input
+                type="date"
+                name="scheduled_date"
+                value={interviewData.scheduled_date}
+                onChange={handleChange}
+            />
+            <input
+                type="time"
+                name="start_time"
+                value={interviewData.start_time}
+                onChange={handleChange}
+            />
+            <input
+                type="time"
+                name="end_time"
+                value={interviewData.end_time}
+                onChange={handleChange}
+            />
+            <button type="submit">Submit</button>
         </form>
     );
 };
 
-export default InterviewBookingForm;
+export default BookInterview;

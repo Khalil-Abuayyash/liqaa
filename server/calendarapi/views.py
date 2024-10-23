@@ -1,4 +1,3 @@
-# views.py
 import os
 import logging
 from datetime import datetime
@@ -97,3 +96,18 @@ def list_events_view(request):
     else:
         return JsonResponse({"message": "No upcoming events found."})
 
+
+@api_view(['POST'])
+def create_availability_view(request):
+    availability_data = {
+        'user': request.user.id,
+        'available_date': request.data.get('available_date'),
+        'start_time': request.data.get('start_time'),
+        'end_time': request.data.get('end_time'),
+        'status': 'not booked',
+    }
+    serializer = AvailabilitySerializer(data=availability_data)
+    if serializer.is_valid():
+        availability = serializer.save()
+        return JsonResponse({'success': 'Availability created successfully'}, status=201)
+    return JsonResponse({'error': serializer.errors}, status=400)
