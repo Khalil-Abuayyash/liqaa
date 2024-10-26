@@ -4,7 +4,7 @@ from .models import Availability, Interview
 class AvailabilitySerializer(serializers.ModelSerializer):
     class Meta:
         model = Availability
-        fields = ['id', 'user', 'available_date', 'start_time', 'end_time', 'status']  
+        fields = ['id', 'user', 'available_date', 'start_time', 'end_time']  
 
 class InterviewSerializer(serializers.ModelSerializer):
     class Meta:
