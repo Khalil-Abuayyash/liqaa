@@ -14,9 +14,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('interviews/', include('interviews.urls', namespace='interviews')),
-    
-    
+    # interviews app
+    path('api/', include('interviews.urls', namespace='interviews')),
     # This path for calendar api / Hamada 
     path('api/calendarapi/', include('calendarapi.urls')),
 
