@@ -1,0 +1,42 @@
+/* About.css */
+.about-container {
+  max-width: 800px;
+  margin: 40px auto; /* Separate it from the header and footer */
+  padding: 20px;
+  border-radius: 15px; /* Rounded corners */
+  background-color: var(--backgrounds); /* Use the light background color */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* Subtle shadow for 3D effect */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease; /* Smooth transition effect */
+}
+
+.about-container:hover {
+  transform: translateY(-5px); /* Slightly lifts the component on hover */
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+h2 {
+  /* text-align: center; */
+  /* color: var(--dark-pink); */
+}
+
+/* h3 {
+  color: var(--dark-red);
+} */
+
+.about-container p,
+.about-container li {
+  color: var(--dark-red); /* Dark red for body text */
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.about-container ul {
+  padding-left: 1.5rem;
+}
+
+.about-container li {
+  list-style-type: disc;
+}

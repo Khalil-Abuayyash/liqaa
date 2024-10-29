@@ -1,0 +1,66 @@
+.register-container {
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 15px;
+  background-color: var(--backgrounds);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.register-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  /* text-align: center; */
+  color: var(--dark-pink);
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+label {
+  color: var(--dark-red);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+input {
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--light-pink);
+  font-size: 1rem;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--dark-pink);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+button {
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: none;
+  background-color: var(--dark-pink);
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--light-pink);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}

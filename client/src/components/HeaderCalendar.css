@@ -1,0 +1,80 @@
+/* Header container */
+.header {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0.5rem; /* Reduce padding for a thinner header */
+  justify-content: center;
+  background-color: var(--backgrounds);
+  border-bottom: 2px solid var(--dark-pink); /* Optional: Add a bottom border for style */
+}
+
+/* Calendar container for each word */
+.calendar {
+  position: relative; /* Important for positioning the pseudo-element */
+  width: fit-content;
+  padding: 0.5rem;
+  background-color: var(--light-pink);
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  text-decoration: none; /* Remove underline from links */
+  color: inherit; /* Ensure text color is inherited */
+}
+
+/* Remove default link styling */
+.calendar:hover {
+  text-decoration: none; /* No underline on hover */
+}
+
+/* Add the decorative top border using a pseudo-element */
+.calendar::before {
+  content: '';
+  width: 100%;
+  height: 8px; /* Reduced height for a thinner header */
+  background-color: var(--dark-pink);
+  border-top-left-radius: 8px; /* Adjusted for the overall card rounding */
+  border-top-right-radius: 8px; /* Adjusted for the overall card rounding */
+  position: absolute;
+  top: 0; /* Positioned above the calendar */
+  left: 0;
+}
+
+/* Header text at the top of each calendar */
+.calendar-header {
+  font-weight: bold;
+  font-size: 1rem; /* Slightly smaller font size for better balance */
+  color: var(--dark-red);
+  padding-bottom: 0.3rem; /* Reduced padding for a slimmer header */
+  position: relative; /* To keep the header above the pseudo-element */
+  z-index: 1; /* Ensure the text appears above the border */
+}
+
+/* Calendar grid for days (letters) */
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Adjust based on your layout */
+  gap: 0.5rem;
+}
+
+/* Individual day styling */
+.day {
+  width: 10px; /* Adjusted for a more consistent look */
+  height: 10px; /* Adjusted for a more consistent look */
+  background-color: var(--pink);
+  color: white;
+  font-weight: bold;
+  font-size: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.day:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.25);
+}

@@ -1,0 +1,32 @@
+:root {
+  --button-bg: #f6febc;
+  --neutral-100: #fcfcfa;
+}
+
+/* Container for absolute positioning */
+.sunContainer {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+/* Sun circle styling */
+.sun {
+  width: 450px;
+  height: 450px;
+  background: linear-gradient(to bottom, var(--button-bg), var(--neutral-100));
+  border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .sunContainer {
+    position: absolute;
+    top: 30%;
+  }
+  .sun {
+    width: 300px;
+    height: 300px;
+  }
+}
