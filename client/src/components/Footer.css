@@ -1,8 +1,8 @@
 .footer {
-  background-color: var(
+  /* background-color: var(
     --backgrounds
-  ); /* Same background color as the header */
-  color: var(--light-pink); /* Text color */
+  ); 
+  color: var(--light-pink); */
   padding: 1.5rem 2rem;
   text-align: center;
 }
@@ -22,7 +22,7 @@
 }
 
 .social-links li a {
-  color: var(--pink); /* Icon color */
+  color: var(--primary-500); /* Icon color */
   font-size: 1.8rem; /* Icon size */
   transition:
     color 0.3s ease,
@@ -30,6 +30,6 @@
 }
 
 .social-links li a:hover {
-  color: var(--light-pink); /* Hover color */
+  color: var(--primary-700); /* Hover color */
   transform: translateY(-2px);
 }

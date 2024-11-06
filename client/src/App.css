@@ -38,6 +38,23 @@
   --neutral-700: #716f6a; /* paragraph text color */
   --neutral-800: #4c4a46;
   --neutral-900: #262522; /* headers text color*/
+
+  --16px: 1rem;
+  --24px: 1.5rem;
+  --32px: 2rem;
+  --300px: 18.75rem;
+
+  /* using scss */
+  /* 
+  @function rem($pixel) {
+    @if math.is-unitless($pixel) {
+      @return math.div($pixel, 16) + rem;
+    } else {
+      @error 'Don\'t use units when using the rem function; only numbers.';
+    }
+  }
+  */
+
 }
 
 a {
