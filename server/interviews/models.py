@@ -3,6 +3,8 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from users.models import User
 from datetime import datetime, date
+from django.db.models import Q
+
 
 class Availability(models.Model):
     is_booked = models.BooleanField(default=False)
@@ -40,7 +42,7 @@ class Availability(models.Model):
             current_end = datetime.combine(self.available_date, self.end_time)
             existing_start = datetime.combine(availability.available_date, availability.start_time)
             existing_end = datetime.combine(availability.available_date, availability.end_time)
-
+    
             # Case: full overlap or containment
             if (current_start >= existing_start and current_end <= existing_end) or \
                (current_start <= existing_start and current_end >= existing_end):
@@ -48,16 +50,22 @@ class Availability(models.Model):
             
             # Case: partial overlaps
             if (current_start < existing_end and current_end > existing_start):
-                raise ValidationError("New availability partially overlaps an existing availability.")
+                raise ValidationError("New availability partially overlaps an existing availability.")    
             
-        def update_overlapping_availability(self):
-            if hasattr(self, 'overlapping_availability'):
-                self.overlapping_availability.start_time = self.start_time
-                self.overlapping_availability.end_time = self.end_time
-                self.overlapping_availability.save()
-
+    def delete(self, *args, **kwargs):
+        has_interviews = Interview.objects.filter(
+            Q(interviewer_availability=self) | Q(interviewee_availability=self)
+        ).exists()
+        
+        if has_interviews:
+            raise ValidationError("Cannot delete this availability because it is associated with interviews.")
+        
+        super().delete(*args, **kwargs)
+   
     def __str__(self):
         return f"Availability for {self.user} on {self.available_date} from {self.start_time} to {self.end_time}"
+                
+    
     
 class Interview(models.Model):
     #user m-m, availability 1-m
@@ -80,12 +88,46 @@ class Interview(models.Model):
 
     def clean(self):
         super().clean()
-        if self.end_time <= self.start_time:
-            raise ValidationError('End time must be after start time.')
 
+        # Ensure that start_time and end_time are provided
+        if not self.start_time or not self.end_time:
+            raise ValidationError("Both start time and end time must be provided.")
+
+        # Ensure the interviewer and interviewee match their availability users
+        if self.interviewer_availability.user != self.interviewer:
+            raise ValidationError("The selected interviewer's availability does not match the interviewer.")
+        if self.interviewee_availability.user != self.interviewee:
+            raise ValidationError("The selected interviewee's availability does not match the interviewee.")
+
+        # Ensure interview schedule matches availability slots
+        if (self.scheduled_date != self.interviewer_availability.available_date or
+            (self.start_time and self.start_time < self.interviewer_availability.start_time) or
+            (self.end_time and self.end_time > self.interviewer_availability.end_time)):
+            raise ValidationError("The interviewer's availability does not match the scheduled date and time.")
+
+        if (self.scheduled_date != self.interviewee_availability.available_date or
+            (self.start_time and self.start_time < self.interviewee_availability.start_time) or
+            (self.end_time and self.end_time > self.interviewee_availability.end_time)):
+            raise ValidationError("The interviewee's availability does not match the scheduled date and time.")
+
+        # Ensure no overlapping interviews for the same user
+        overlapping_interviews = Interview.objects.filter(
+            scheduled_date=self.scheduled_date,
+            start_time__lt=self.end_time,
+            end_time__gt=self.start_time
+        ).exclude(id=self.id)
+
+        for interview in overlapping_interviews:
+            if interview.interviewer == self.interviewer or interview.interviewee == self.interviewee:
+                raise ValidationError("The interview conflicts with an existing interview for one of the participants.")
+            
+        
     def save(self, *args, **kwargs):
         self.clean()
         super().save(*args, **kwargs)
+        
 
     def __str__(self):
         return f"Interview on {self.scheduled_date} between {self.interviewer} and {self.interviewee}"
+    
+    
