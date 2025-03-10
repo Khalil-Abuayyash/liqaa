@@ -11,8 +11,8 @@ The platform supports job interview preparation, thesis defenses, presentations,
 - **Customized Recommendations:** AI suggests interviewers, topics, and study materials based on user prompts.
 - **Interview Types:**  
   - Outsider interviews  
-  - Course-based interviews (similar to Manara)  
-  - Structured preparation kits (e.g., 1-week, 1-month plans like HackerRank)  
+  - Course-based interviews 
+  - Structured preparation kits  
 - **Status Tracking:** Interview progress is tracked through states: pending, matched, upcoming, current, feedback, and completed.
 - **Resource Hub:** Courses, articles, tips, and resume templates to enhance preparation.
 
@@ -34,28 +34,11 @@ The platform supports job interview preparation, thesis defenses, presentations,
 - DevOps Tools
 
 ## User Roles
-- **Student (Interviewer/Interviewee)** – No distinction in the database
+- **Student (Interviewer/Interviewee)** 
 - **Expert Interviewer**
-- **Company/Applicant** – Same as students in the database
+- **Company/Applicant** 
 
-## Team Roles & Responsibilities
-- **Frontend Development:** Khalil, Mohammed, Hamada
-- **Backend Development:** Hamada, Khalil, Mohammed
-- **Documentation (GitHub):** Maen, Sameh
-- **DevOps:** Sameh
-- **UX/UI Design:** Salam
-- **R&D & AI Models:** Sameh, Khalil
 
-## Integration Plan
-- **Current Integrations:** Google Meet, Google Calendar, Calendly
-- **Future Additions:** Built-in video call functionality and scheduling tools
-
-## Timeline
-- **Project Start Date:** Sunday, 19/9/2024
-
-## Repository & Domain
-- **GitHub Repository:** [liqaa](https://github.com/Khalil-Abuayyash/liqaa)
-- **Domain:** [liqaa.team](https://liqaa.team)
 
 LIQAA aims to revolutionize interview preparation by making it more accessible, personalized, and AI-enhanced. Contributions are welcome as we continue to expand and refine the platform!
 
